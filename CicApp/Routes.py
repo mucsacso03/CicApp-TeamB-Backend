@@ -27,4 +27,4 @@ def reg():
     #db.session.add(user)
     #db.session.commit()
 
-    return 'In Progress'
+    return user.username
