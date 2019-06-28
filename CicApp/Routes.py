@@ -19,11 +19,11 @@ def hello():
 @app.route('/', methods=['GET', 'POST']) #/register csak gyorsabb igy tesztelni
 def reg():
     form = RegForm()
-    form.username = "Jani"
-    form.email = "janivok@jano.hu"
-    form.password = "jani69"
-    hashed_pw = bcrypt.generate_password_hash(form.password).decode('utf-8')
-    user = User(username=form.username, email=form.email, password=hashed_pw)  #.data kellene
+    form.username.data = "Jani"
+    form.email.data = "janivok@jano.hu"
+    form.password.data = "jani69"
+    hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+    user = User(username=form.username.data, email=form.email.data, password=hashed_pw)  #.data kellene
     #db.session.add(user)
     #db.session.commit()
 
