@@ -18,6 +18,6 @@ def reg():
     hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
     user = User(username=form.username, email=form.email.data, password=hashed_pw)
     db.session.add(user)
-    db.session.commit
+    db.session.commit()
 
     return 'In Progress'
