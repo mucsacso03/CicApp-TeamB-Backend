@@ -25,9 +25,9 @@ def reg():
     hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
     user = User(username=form.username.data, email=form.email.data, password=hashed_pw)  #.data kellene
     '''
-    usern = request.args.get('usern ', '')
-    passw = request.args.get('passw ', '')
-    email = request.args.get('email ', '')
+    usern = request.args.get('usern', '')
+    passw = request.args.get('passw', '')
+    email = request.args.get('email', '')
     hashed_pw = bcrypt.generate_password_hash(passw).decode('utf-8')
     user = User(username=usern, email=email, password=hashed_pw)  # .data kellene
 
