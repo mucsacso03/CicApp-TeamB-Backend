@@ -18,8 +18,8 @@ def hello():
     return 'HelloWorld'
 
 
-usern = ''
-hashed_pw = ''
+global usern
+global hashed_pw
 
 
 @app.route('/register', methods=['POST'])
@@ -53,5 +53,5 @@ def login():
         if bcrypt.check_password_hash(passw1, hashed_pw):
             return 'logged in'
     else:
-        return 'nope'
+        return 'nope' + usern + ' ' + usern1
 
