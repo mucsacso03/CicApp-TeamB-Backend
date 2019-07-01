@@ -1,22 +1,27 @@
 from flask import Flask, url_for, redirect
 from flask_bcrypt import Bcrypt
-from CicApp import app,db, request
+from CicApp import app, db, request
 from CicApp.Forms import RegForm
 from CicApp.models import User
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 
 bcrypt = Bcrypt(app)
 
+
 @app.route('/')
 def home():
     return 'HomePage'
+
 
 @app.route('/helloworld')
 def hello():
     return 'HelloWorld'
 
 
-@app.route('/register', methods=['POST']) #/register csak gyorsabb igy tesztelni
+usern = ''
+
+
+@app.route('/register', methods=['POST'])
 def reg():
     form = RegForm()
     '''form.username.data = "Jani"
@@ -31,7 +36,21 @@ def reg():
     hashed_pw = bcrypt.generate_password_hash(passw).decode('utf-8')
     user = User(username=usern, email=email, password=hashed_pw)  # .data kellene
 
-    #db.session.add(user)
-    #db.session.commit()
+    # db.session.add(user)
+    # db.session.commit()
 
     return user.username
+
+
+@app.route('/login')#, methods=['POST'])
+def login():
+    '''form = RegForm()
+
+    usern = request.args.get('usern', '')
+    passw = request.args.get('passw', '')
+    hashed_pw = bcrypt.generate_password_hash(passw).decode('utf-8')
+
+    # db.session.add(user)
+    # db.session.commit()'''
+
+    return 'login'
