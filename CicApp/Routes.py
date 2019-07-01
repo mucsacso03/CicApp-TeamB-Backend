@@ -18,8 +18,10 @@ def hello():
     return 'HelloWorld'
 
 
-global usern
-global hashed_pw
+#global usern
+#global hashed_pw
+usern = ''
+hashed_pw = ""
 
 
 @app.route('/register', methods=['POST'])
