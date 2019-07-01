@@ -6,17 +6,17 @@ from CicApp.models import User
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 
 bcrypt = Bcrypt(app)
-'''
+
 @app.route('/')
 def home():
     return 'HomePage'
-'''
+
 @app.route('/helloworld')
 def hello():
     return 'HelloWorld'
 
 
-@app.route('/', methods=['POST']) #/register csak gyorsabb igy tesztelni
+@app.route('/register', methods=['POST']) #/register csak gyorsabb igy tesztelni
 def reg():
     form = RegForm()
     '''form.username.data = "Jani"
