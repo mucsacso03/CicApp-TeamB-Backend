@@ -47,8 +47,8 @@ def reg():
 def login():
     form = RegForm()
 
-    usern1 = request.args.get('usern', '')
-    passw1 = request.args.get('passw', '')
+    usern1 = request.args.get('usern1', '')
+    passw1 = request.args.get('passw1', '')
     if usern1 == usern:
         if bcrypt.check_password_hash(passw1, hashed_pw):
             return 'logged in'
