@@ -43,7 +43,7 @@ def reg():
     return user.username
 
 
-@app.route('/login')#, methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     form = RegForm()
 
