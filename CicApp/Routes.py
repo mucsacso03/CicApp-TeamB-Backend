@@ -19,6 +19,7 @@ def hello():
 
 
 usern = ''
+hashed_pw = ''
 
 
 @app.route('/register', methods=['POST'])
@@ -44,13 +45,13 @@ def reg():
 
 @app.route('/login')#, methods=['POST'])
 def login():
-    '''form = RegForm()
+    form = RegForm()
 
-    usern = request.args.get('usern', '')
-    passw = request.args.get('passw', '')
-    hashed_pw = bcrypt.generate_password_hash(passw).decode('utf-8')
+    usern1 = request.args.get('usern', '')
+    passw1 = request.args.get('passw', '')
+    if usern1 == usern:
+        if bcrypt.check_password_hash(passw1, hashed_pw):
+            return 'logged in'
+    else:
+        return 'nope'
 
-    # db.session.add(user)
-    # db.session.commit()'''
-
-    return 'login'
