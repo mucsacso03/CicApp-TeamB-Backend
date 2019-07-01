@@ -33,6 +33,8 @@ def reg():
     hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
     user = User(username=form.username.data, email=form.email.data, password=hashed_pw)  #.data kellene
     '''
+    global usern
+    global hashed_pw
     usern = request.args.get('usern', '')
     passw = request.args.get('passw', '')
     email = request.args.get('email', '')
@@ -48,7 +50,8 @@ def reg():
 @app.route('/login', methods=['POST'])
 def login():
     form = RegForm()
-
+    global usern
+    global hashed_pw
     usern1 = request.args.get('usern1', '')
     passw1 = request.args.get('passw1', '')
     if usern1 == usern:
