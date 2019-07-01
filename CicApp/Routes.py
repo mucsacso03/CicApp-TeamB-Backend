@@ -54,7 +54,7 @@ def login():
     global hashed_pw
     usern1 = request.args.get('usern1', '')
     passw1 = request.args.get('passw1', '')
-    if usern1 == usern and bcrypt.check_password_hash(passw1, hashed_pw):
+    if usern1 == usern and bcrypt.check_password_hash(hashed_pw, passw1):
         return 'logged in'
     else:
         string = 'nope - ' + usern + ' - ' + usern1
