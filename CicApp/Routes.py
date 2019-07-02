@@ -1,6 +1,6 @@
 from flask import Flask, url_for, redirect
 from flask_bcrypt import Bcrypt
-from CicApp import app, db, request
+from CicApp import app, db, request, jsonify
 from CicApp.Forms import RegForm
 from CicApp.models import User
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
@@ -15,24 +15,14 @@ def home():
 
 @app.route('/helloworld')
 def hello():
-    return 'HelloWorld'
+    return jsonify(msg='HelloWorld'), 200
 
-
-#global usern
-#global hashed_pw
 usern = ''
 hashed_pw = ""
-
 
 @app.route('/register', methods=['POST'])
 def reg():
     form = RegForm()
-    '''form.username.data = "Jani"
-    form.email.data = "janivok@jano.hu"
-    form.password.data = "jani69"
-    hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-    user = User(username=form.username.data, email=form.email.data, password=hashed_pw)  #.data kellene
-    '''
     global usern
     global hashed_pw
     usern = request.args.get('usern', '')
@@ -44,7 +34,7 @@ def reg():
     # db.session.add(user)
     # db.session.commit()
 
-    return user.username
+    return jsonify(username=user.username, email=user.email, msg='Succesfully registered'), 200
 
 
 @app.route('/login', methods=['POST'])
@@ -55,9 +45,8 @@ def login():
     usern1 = request.args.get('usern1', '')
     passw1 = request.args.get('passw1', '')
     if usern1 == usern and bcrypt.check_password_hash(hashed_pw, passw1):
-        return 'logged in'
+        return jsonify(msg='Logged in', username=usern1), 200
     else:
-        string = 'nope - ' + usern + ' - ' + usern1
-        return string
+        return jsonify(msg='Log in failed'), 200
 
 
