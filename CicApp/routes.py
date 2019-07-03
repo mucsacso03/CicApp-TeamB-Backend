@@ -53,7 +53,9 @@ def login():
 @app.errorhandler(HTTPException)
 def error_handler(e):
     message = str(e)
-    resp = make_response(jsonify(msg=message))
+    error_code = message[0:3]
+    resp = make_response(jsonify(msg=message), error_code)
+    resp.headers['Error'] = error_code
     return resp
 
 
