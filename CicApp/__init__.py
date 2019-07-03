@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config.from_object(os.environ['APP_SETTINGS'])
 db = SQLAlchemy(app)
 
-from CicApp import Routes
+from CicApp import routes
 
 # ------------
 '''basedir = os.path.abspath(os.path.dirname(__file__))

@@ -1,7 +1,7 @@
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, Response, make_response
 from flask_bcrypt import Bcrypt
 from CicApp import app, db, request, jsonify
-from CicApp.Forms import RegForm
+from CicApp.forms import RegForm
 from CicApp.models import User
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 
@@ -31,9 +31,6 @@ def reg():
     hashed_pw = bcrypt.generate_password_hash(passw).decode('utf-8')
     user = User(username=usern, email=email, password=hashed_pw)  # .data kellene
 
-    # db.session.add(user)
-    # db.session.commit()
-
     return jsonify(username=user.username, email=user.email, msg='Succesfully registered'), 200
 
 
@@ -48,5 +45,11 @@ def login():
         return jsonify(msg='Logged in', username=usern1), 200
     else:
         return jsonify(msg='Log in failed'), 200
+
+@app.errorhandler(405)
+def page_not_found(e):
+    resp = make_response(jsonify(msg='Error 405'), 405)
+    resp.headers['Error'] = '405'
+    return resp
 
 
