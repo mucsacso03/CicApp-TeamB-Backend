@@ -1,5 +1,9 @@
+
+
 from flask import Flask, url_for, redirect, Response, make_response
 from flask_bcrypt import Bcrypt
+from werkzeug.exceptions import HTTPException
+
 from CicApp import app, db, request, jsonify
 from CicApp.forms import RegForm
 from CicApp.models import User
@@ -46,10 +50,10 @@ def login():
     else:
         return jsonify(msg='Log in failed'), 200
 
-@app.errorhandler(405)
-def page_not_found(e):
-    resp = make_response(jsonify(msg='Error 405'), 405)
-    resp.headers['Error'] = '405'
+@app.errorhandler(HTTPException)
+def error_handler(e):
+    message = str(e)
+    resp = make_response(jsonify(msg=message))
     return resp
 
 
