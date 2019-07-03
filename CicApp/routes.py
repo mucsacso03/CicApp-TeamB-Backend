@@ -1,5 +1,4 @@
 
-
 from flask import Flask, url_for, redirect, Response, make_response
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import HTTPException
@@ -24,9 +23,7 @@ def home():
         <br><a href="login">/login</a>
         </p>
     </body>
-    </html>
-
-'''
+    </html>'''
 
 @app.route('/helloworld')
 def hello():
@@ -68,5 +65,3 @@ def error_handler(e):
     resp = make_response(jsonify(msg=message), error_code)
     resp.headers['Error'] = error_code
     return resp
-
-
