@@ -14,8 +14,19 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def home():
-    return 'HomePage'
+    return '''
+    <!DOCTYPE html>
+    <html> 
+    <body> 
+        <p>Home Page
+        <br><a href="helloworld">/helloworld</a>
+        <br><a href="register">/register</a>
+        <br><a href="login">/login</a>
+        </p>
+    </body>
+    </html>
 
+'''
 
 @app.route('/helloworld')
 def hello():
