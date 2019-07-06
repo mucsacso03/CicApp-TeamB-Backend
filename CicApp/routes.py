@@ -1,4 +1,3 @@
-
 from flask import Flask, url_for, redirect, Response, make_response
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import HTTPException
@@ -25,12 +24,15 @@ def home():
     </body>
     </html>'''
 
+
 @app.route('/helloworld')
 def hello():
     return jsonify(msg='HelloWorld'), 200
 
+
 usern = ''
 hashed_pw = ""
+
 
 @app.route('/register', methods=['POST'])
 def reg():
@@ -57,6 +59,12 @@ def login():
         return jsonify(msg='Logged in', username=usern1), 200
     else:
         return jsonify(msg='Log in failed'), 200
+
+
+@app.route("/forgotpw", methods=['POST'])
+def forgotpw():
+    return 'in progress...'
+
 
 @app.errorhandler(HTTPException)
 def error_handler(e):
